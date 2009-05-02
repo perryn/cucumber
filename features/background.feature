@@ -80,7 +80,7 @@ Feature: backgrounds
           FAIL (RuntimeError)
           ./features/step_definitions/sample_steps.rb:2:in `flunker'
           ./features/step_definitions/sample_steps.rb:16:in `/^failing without a table$/'
-          features/background/failing_background.feature:5:in `Given failing without a table'
+          features/background/failing_background.feature:5:in `Background:  : Given failing without a table'
         And '10' cukes
 
       Scenario: failing background
@@ -106,7 +106,7 @@ Feature: backgrounds
           FAIL (RuntimeError)
           ./features/step_definitions/sample_steps.rb:2:in `flunker'
           ./features/step_definitions/sample_steps.rb:16:in `/^failing without a table$/'
-          features/background/scenario_outline_failing_background.feature:4:in `Given failing without a table'
+          features/background/scenario_outline_failing_background.feature:4:in `Background:  : Given failing without a table'
 
       Scenario Outline: failing background
         Then I should have '<count>' cukes
@@ -165,7 +165,7 @@ Feature: backgrounds
           FAIL (RuntimeError)
           ./features/step_definitions/sample_steps.rb:2:in `flunker'
           ./features/step_definitions/sample_steps.rb:37:in `/^'(.+)' global cukes$/'
-          features/background/failing_background_after_success.feature:5:in `And '10' global cukes'
+          features/background/failing_background_after_success.feature:5:in `Background:  : And '10' global cukes'
         Then I should have '10' global cukes
 
     2 scenarios (1 failed, 1 passed)

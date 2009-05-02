@@ -18,7 +18,7 @@ Feature: Cucumber command line
             +this
              (Spec::Expectations::ExpectationNotMetError)
             ./features/step_definitions/sample_steps.rb:63:in `/^failing expectation$/'
-            features/failing_expectation.feature:4:in `Given failing expectation'
+            features/failing_expectation.feature:4:in `Scenario: Failing expectation : Given failing expectation'
 
       1 scenario (1 failed)
       1 step (1 failed)
@@ -36,7 +36,7 @@ Feature: Cucumber command line
             expected: "that",
                  got: "this" (using ==) (Spec::Expectations::ExpectationNotMetError)
             ./features/step_definitions/sample_steps.rb:63:in `/^failing expectation$/'
-            features/failing_expectation.feature:4:in `Given failing expectation'
+            features/failing_expectation.feature:4:in `Scenario: Failing expectation : Given failing expectation'
 
       1 scenario (1 failed)
       1 step (1 failed)

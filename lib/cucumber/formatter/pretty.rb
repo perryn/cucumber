@@ -177,6 +177,7 @@ module Cucumber
       def print_summary
         print_counts
         print_snippets(@options)
+        print_must_not_pass_report(@options)
       end
 
     end

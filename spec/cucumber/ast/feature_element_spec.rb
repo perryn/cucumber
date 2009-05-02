@@ -35,6 +35,32 @@ module Cucumber
       matches_scenario_names?([/es/]).should be_true
     end
     
+    it "should generate a backtrace including keyword ,name and line" do
+       @keyword = "key"  
+       @name = "name"
+       @line = "2"
+       @feature = "mock feature"
+       @feature.should_receive(:backtrace_line).with("key name","2").and_return("full line")
+       backtrace_line.should eql("full line")
+    end
+    
+    it "should be able to generate a backtrace with extra name info and overridden line" do
+       @keyword = "key"  
+       @name = "name"
+       @line = "2"
+       @feature = "mock feature"
+       @feature.should_receive(:backtrace_line).with("key name : extra name","3").and_return("full line")
+       backtrace_line("extra name", "3").should eql("full line")
+    end
+    
+    it "should generate an empty backtrace if there is no feature" do
+       @keyword = "key"  
+       @name = "name"
+       @line = "2"
+       backtrace_line.should be_nil
+    end
+    
+    
   end
 end
 

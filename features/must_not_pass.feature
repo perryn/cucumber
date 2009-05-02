@@ -38,7 +38,15 @@ Feature: Cucumber --must_not_pass switch
     """
     1 scenario (1 passed)
     1 step (1 passed)
+    
+    Some scenarios passed, but the --must-not-pass switch was used
+    (::) passed scenarios (::)
+
+    features/must_not_pass/passing.feature:3:in `Scenario: Passing'
     """     
+  
+
+  
   
   Scenario: should work with a scenario outline 
     When I run cucumber -q features/must_not_pass/outline.feature --must-not-pass --require features
@@ -47,6 +55,11 @@ Feature: Cucumber --must_not_pass switch
     """
     2 scenarios (1 failed, 1 passed)
     2 steps (1 failed, 1 passed)
+    
+    Some scenarios passed, but the --must-not-pass switch was used
+    (::) passed scenarios (::)
+    
+    features/must_not_pass/outline.feature:8:in `Scenario Outline: Outline : |passes|'
     """
 
   Scenario: any passing scenarios fail entire run
@@ -56,5 +69,12 @@ Feature: Cucumber --must_not_pass switch
     """
     6 scenarios (2 failed, 1 undefined, 1 pending, 2 passed)
     6 steps (2 failed, 1 undefined, 1 pending, 2 passed)
+    
+    Some scenarios passed, but the --must-not-pass switch was used
+    (::) passed scenarios (::)
+
+    features/must_not_pass/outline.feature:8:in `Scenario Outline: Outline : |passes|'
+
+    features/must_not_pass/passing.feature:3:in `Scenario: Passing'
     """
   

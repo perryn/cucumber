@@ -30,16 +30,17 @@ module Cucumber
           cells.create_step_invocations!(scenario_outline)
         end
       end
-      
+
       def example_rows
         cells_rows[1..-1]
       end
 
       class ExampleCells < Cells
         def create_step_invocations!(scenario_outline)
+          @scenario_outline = scenario_outline
           @step_invocations = scenario_outline.step_invocations(self)
         end
-        
+
         def skip_invoke!
           @step_invocations.each do |step_invocation|
             step_invocation.skip_invoke!
@@ -83,6 +84,13 @@ module Cucumber
         # Returns the status
         def status
           @step_invocations.status
+        end
+
+        def backtrace_line
+          name = "|"
+          name += @cells.collect{|c| c.value }.join("|")
+          name += "|"
+          @scenario_outline.backtrace_line(name,@cells.first.line)
         end
 
         private

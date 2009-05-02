@@ -34,8 +34,10 @@ module Cucumber
       scenario_name_regexps.detect{|name| name =~ @name}
     end 
 
-    def backtrace_line(name = "#{@keyword} #{@name}", line = @line)
-      @feature.backtrace_line(name, line) if @feature
+    def backtrace_line(name = "", line = @line)
+      full_name = "#{@keyword} #{@name}" 
+      full_name += " : #{name}" unless name.empty?
+      @feature.backtrace_line(full_name, line) if @feature
     end
 
     def source_indent(text_length)

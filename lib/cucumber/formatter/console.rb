@@ -81,10 +81,20 @@ module Cucumber
         text += snippets.join("\n\n")
 
         @io.puts format_string(text, :undefined)
+        
         @io.puts
         @io.flush
       end
 
+      def print_must_not_pass_report(options)
+         return unless options[:must_not_pass]
+         passed = step_mother.scenarios(:passed)
+         if passed.any?
+            @io.puts "\nSome scenarios passed, but the --must-not-pass switch was used"
+            print_elements(passed, :passed, "scenarios")
+         end     
+      end
+    
       def announce(announcement)
         @io.puts
         @io.puts(format_string(announcement, :tag))

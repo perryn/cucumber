@@ -29,7 +29,7 @@ Feature: Cucumber command line
         Scenario: Missing
           Given missing
             Undefined step: "missing" (Cucumber::Undefined)
-            features/sample.feature:6:in `Given missing'
+            features/sample.feature:6:in `Scenario: Missing : Given missing'
 
       1 scenario (1 undefined)
       1 step (1 undefined)
@@ -74,7 +74,7 @@ Feature: Cucumber command line
             FAIL (RuntimeError)
             ./features/step_definitions/sample_steps.rb:2:in `flunker'
             ./features/step_definitions/sample_steps.rb:9:in `/^failing$/'
-            features/sample.feature:16:in `Given failing'
+            features/sample.feature:16:in `Scenario: Failing : Given failing'
 
       2 scenarios (1 failed, 1 undefined)
       2 steps (1 failed, 1 undefined)
@@ -126,7 +126,7 @@ Feature: Cucumber command line
       FAIL (RuntimeError)
       ./features/step_definitions/sample_steps.rb:2:in `flunker'
       ./features/step_definitions/sample_steps.rb:9:in `/^failing$/'
-      features/sample.feature:16:in `Given failing'
+      features/sample.feature:16:in `Scenario: Failing : Given failing'
 
       3 scenarios (1 failed, 1 undefined, 1 passed)
       3 steps (1 failed, 1 undefined, 1 passed)
@@ -430,7 +430,7 @@ Feature: Cucumber command line
             FAIL (RuntimeError)
             ./features/step_definitions/sample_steps.rb:2:in `flunker'
             ./features/step_definitions/sample_steps.rb:9:in `/^failing$/'
-            features/sample.feature:16:in `Given failing'
+            features/sample.feature:16:in `Scenario: Failing : Given failing'
 
       3 scenarios (1 failed, 1 undefined, 1 passed)
       3 steps (1 failed, 1 undefined, 1 passed)
