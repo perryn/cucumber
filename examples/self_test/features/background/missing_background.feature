@@ -1,10 +1,10 @@
 Feature: Pending background sample
 
   Background:
-    Given pending
+    Given missing
 
-  Scenario: pending background
+  Scenario: missing background
     Then I should have '10' cukes
     
-  Scenario: another pending background
+  Scenario: another missing background
     Then I should have '10' cukes

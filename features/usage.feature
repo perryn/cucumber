@@ -86,10 +86,10 @@ Feature: Cucumber command line
        Then I should have '10' cukes      # features/background/background_with_name.feature:7
        Then I should have '10' cukes      # features/background/failing_background.feature:9
        Then I should have '10' cukes      # features/background/failing_background.feature:12
+       Then I should have '10' cukes      # features/background/missing_background.feature:7
+       Then I should have '10' cukes      # features/background/missing_background.feature:10
        Then I should have '10' cukes      # features/background/passing_background.feature:7
        Then I should have '10' cukes      # features/background/passing_background.feature:10
-       Then I should have '10' cukes      # features/background/pending_background.feature:7
-       Then I should have '10' cukes      # features/background/pending_background.feature:10
        Then I should have '<count>' cukes # features/background/scenario_outline_failing_background.feature:7
        Then I should have '<count>' cukes # features/background/scenario_outline_failing_background.feature:13
        Then I should have '<count>' cukes # features/background/scenario_outline_passing_background.feature:7
@@ -110,10 +110,16 @@ Feature: Cucumber command line
        Then the multiline string should be # features/background/multiline_args_background.feature:17
        Then the multiline string should be # features/background/multiline_args_background.feature:27
       /^passing$/    # features/step_definitions/sample_steps.rb:5
+       Given passing # features/must_not_pass/passing.feature:4
        Given passing # features/sample.feature:10
       /^failing expectation$/    # features/step_definitions/sample_steps.rb:62
        Given failing expectation # features/failing_expectation.feature:4
+      /^pending$/    # features/step_definitions/sample_steps.rb:83
+       Given pending # features/must_not_pass/pending.feature:4
+      /^an scenario outline example that (.*)$/        # features/step_definitions/sample_steps.rb:87
+       Given an scenario outline example that <result> # features/must_not_pass/outline.feature:4
       /^failing$/    # features/step_definitions/sample_steps.rb:8
+       Given failing # features/must_not_pass/failing.feature:4
        Given failing # features/sample.feature:16
       (::) UNUSED (::)
       /^unused$/          # features/step_definitions/sample_steps.rb:66

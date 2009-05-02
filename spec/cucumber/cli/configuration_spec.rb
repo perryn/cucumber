@@ -129,7 +129,7 @@ END_OF_MESSAGE
       end
     end
 
-    it "should procide a helpful error message when the YAML can not be parsed" do
+    it "should provide a helpful error message when the YAML can not be parsed" do
       expected_error_message = /cucumber.yml was found, but could not be parsed. Please refer to cucumber's documentation on correct profile usage./
 
       given_cucumber_yml_defined_as("input that causes an exception in YAML loading")
@@ -211,6 +211,25 @@ END_OF_MESSAGE
       Term::ANSIColor.should_receive(:coloring=).with(false)
       config = Configuration.new(StringIO.new)
       config.parse!(['--no-color'])
+    end
+    
+    it "should accept --must-not-pass option" do
+      config = Configuration.new
+      config.parse!(%w{--must-not-pass})
+      config.must_not_pass?.should be_true
+    end
+    
+    it "should default --must-not-pass to off" do
+      config = Configuration.new
+      config.parse!(%w{})
+      config.must_not_pass?.should be_false
+    end
+    
+    it "should provide a helpful error message when using incompatible --strict and --must-not-pass" do
+      expected_error_message = /You can't use both --strict and --must-not-pass/
+      config = Configuration.new(StringIO.new, error = StringIO.new)
+      config.parse!(%w{--strict --must-not-pass})
+      error.string.should match(expected_error_message)
     end
     
     it "should parse tags" do

@@ -79,3 +79,11 @@ After('@after_file') do
   FileUtils.mkdir_p(File.dirname(after_file))
   FileUtils.touch(after_file)
 end
+
+Given /^pending$/ do
+  pending "foo"
+end
+
+Given /^an scenario outline example that (.*)$/ do |result|
+  flunker if result == "fails"
+end

@@ -130,6 +130,10 @@ module Cucumber
           opts.on("-S", "--strict", "Fail if there are any undefined steps.") do
             @options[:strict] = true
           end
+          opts.on("-M", "--must-not-pass", "Fail if any scenarios pass.") do
+                exit_with_error("You can't use both --strict and --must-not-pass") if @options[:strict]
+                @options[:must_not_pass] = true
+          end
           opts.on("-v", "--verbose", "Show the files and features loaded.") do
             @options[:verbose] = true
           end
@@ -164,6 +168,10 @@ module Cucumber
     
       def strict?
         @options[:strict]
+      end
+      
+      def must_not_pass?
+          @options[:must_not_pass] == true
       end
       
       def guess?

@@ -26,22 +26,26 @@ module Cucumber
         @out_stream   = out_stream == STDOUT ? Formatter::ColorIO.new : out_stream
         @error_stream = error_stream
       end
-      
+
       def execute!(step_mother)
         configuration.load_language
         step_mother.options = configuration.options
 
         require_files
         enable_diffing
-      
+
         features = load_plain_text_features
 
         visitor = configuration.build_formatter_broadcaster(step_mother)
         step_mother.visitor = visitor # Needed to support World#announce
         visitor.visit_features(features)
 
-        failure = step_mother.steps(:failed).any? || 
+        if configuration.must_not_pass?
+          failure = step_mother.scenarios(:passed).any?
+        else
+          failure = step_mother.steps(:failed).any? ||
           (configuration.strict? && step_mother.steps(:undefined).any?)
+        end
 
         Kernel.exit(failure ? 1 : 0)
       end
@@ -64,14 +68,14 @@ module Cucumber
 
       def configuration
         return @configuration if @configuration
-      
+
         @configuration = Configuration.new(@out_stream, @error_stream)
         @configuration.parse!(@args)
         @configuration
       end
 
       private
-    
+
       def require_files
         verbose_log("Ruby files required:")
         configuration.files_to_require.each do |lib|
@@ -101,7 +105,7 @@ module Cucumber
           ::Spec::Expectations.differ = ::Spec::Expectations::Differs::Default.new(options)
         end
       end
-    
+
     end
   end
 end

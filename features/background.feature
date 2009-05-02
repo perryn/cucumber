@@ -127,19 +127,19 @@ Feature: backgrounds
 
     """
 
-  Scenario: run a feature with a background that is pending
-    When I run cucumber -q features/background/pending_background.feature --require features
+  Scenario: run a feature with a background that is unimplemented
+    When I run cucumber -q features/background/missing_background.feature --require features
     Then it should pass with
     """
     Feature: Pending background sample
 
       Background: 
-        Given pending
+        Given missing
 
-      Scenario: pending background
+      Scenario: missing background
         Then I should have '10' cukes
 
-      Scenario: another pending background
+      Scenario: another missing background
         Then I should have '10' cukes
 
     2 scenarios (2 undefined)
