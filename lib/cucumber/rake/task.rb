@@ -172,7 +172,7 @@ module Cucumber
     #   end
     #
     #  Note that this will not work if you want to pass your own --tags option
-    #  In this case it is reccomended to simply use Cucumber::Rake::Task
+    #  In this case it is recommended to simply use Cucumber::Rake::Task
    class RegressionTask < Task
 
       def initialize(task_name = "regression", desc = "Run a regression suite comprised of all scenarios not marked @in_progress")
@@ -183,6 +183,35 @@ module Cucumber
           args = super(task_args)
           args << "--strict"
           args << "-t~@in_progress"
+          args
+      end
+      
+  end
+  
+  # Defines a convenience Rake task for running all your currently in progress features.
+  #
+  # The simplest use of it goes something like:
+  #
+  #   Cucumber::Rake::InProgressTask.new
+  #
+  # This will create a task named 'in_progress' 
+  #
+  #   Cucumber::Rake::Task.new do |t|
+  #     t.cucumber_opts = "--must-not-pass --tags @in_progress"
+  #   end
+  #
+  #  Note that this will not work if you want to pass your own --tags option
+  #  In this case it is recommended to simply use Cucumber::Rake::Task
+  class InProgressTask < Task
+
+      def initialize(task_name = "in_progress", desc = "Run a suite comprised of all scenarios marked @in_progress and expect none of them to pass yet")
+        super(task_name, desc)
+      end
+      
+      def arguments_for_ruby_execution(task_args = nil)
+          args = super(task_args)
+          args << "--must-not-pass"
+          args << "-t@in_progress"
           args
       end
       
