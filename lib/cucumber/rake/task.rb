@@ -158,6 +158,35 @@ module Cucumber
       end
 
     end
+    
+    # Defines a convenience Rake task for running a regression suite.
+    #
+    # The simplest use of it goes something like:
+    #
+    #   Cucumber::Rake::RegressionTask.new
+    #
+    # This will create a task named 'regression' 
+    #
+    #   Cucumber::Rake::Task.new do |t|
+    #     t.cucumber_opts = "--strict --tags ~@in_progress"
+    #   end
+    #
+    #  Note that this will not work if you want to pass your own --tags option
+    #  In this case it is reccomended to simply use Cucumber::Rake::Task
+   class RegressionTask < Task
 
+      def initialize(task_name = "regression", desc = "Run a regression suite comprised of all scenarios not marked @in_progress")
+        super(task_name, desc)
+      end
+      
+      def arguments_for_ruby_execution(task_args = nil)
+          args = super(task_args)
+          args << "--strict"
+          args << "-t~@in_progress"
+          args
+      end
+      
   end
+  
+ end  
 end
