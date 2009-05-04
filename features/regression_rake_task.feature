@@ -45,13 +45,13 @@ Feature: Regression Rake task
         Scenario: pending
           Given pending
       """
-      When I run rake regression
-      Then it should pass
-      And the output should contain
-          """
-          2 scenarios (1 pending, 1 passed)
-          2 steps (1 pending, 1 passed)
-          """
+    When I run rake regression
+    Then it should pass
+    And the output should contain
+      """
+      2 scenarios (1 pending, 1 passed)
+      2 steps (1 pending, 1 passed)
+      """
 
   Scenario: should not pass if there are failures
     Given a file named "features/failing_regression.feature" with:
@@ -61,47 +61,47 @@ Feature: Regression Rake task
         Scenario: failing
           Given failing
       """
-      When I run rake regression
-      Then it should fail
-      And the output should contain
-          """
-          1 scenario (1 failed)
-          1 step (1 failed)
-          """
+    When I run rake regression
+    Then it should fail
+    And the output should contain
+      """
+      1 scenario (1 failed)
+      1 step (1 failed)
+      """
           
-    Scenario: regression suite should break when step refactoring acidentally causes steps to become undefined again
-      Given a file named "features/undefined_regression.feature" with:
-        """
+  Scenario: regression suite should break when step refactoring acidentally causes steps to become undefined again
+    Given a file named "features/undefined_regression.feature" with:
+      """
         Feature: Sample
 
-        Scenario: missing
-          Given missing
-        """
-        When I run rake regression 
-        Then it should fail
-        And the output should contain
-        """
-        1 scenario (1 undefined)
-        1 step (1 undefined)
-        """ 
+          Scenario: missing
+            Given missing
+      """
+    When I run rake regression 
+    Then it should fail
+    And the output should contain
+      """
+      1 scenario (1 undefined)
+      1 step (1 undefined)
+      """ 
         
-    Scenario: regression suite should not run scenarios marked as still in progress
-          Given a file named "features/undefined_regression.feature" with:
-            """
-            Feature: Sample
+  Scenario: regression suite should not run scenarios marked as still in progress
+    Given a file named "features/undefined_regression.feature" with:
+      """
+        Feature: Sample
             
-            Scenario: passing
-              Given passing
+          Scenario: passing
+            Given passing
               
-            @in_progress
-            Scenario: failing
-              Given failing
-            """
-            When I run rake regression 
-            Then it should pass
-            And the output should contain
-            """
-            1 scenario (1 passed)
-            1 step (1 passed)
-            """ 
+          @in_progress
+          Scenario: failing
+            Given failing
+      """
+    When I run rake regression 
+    Then it should pass
+    And the output should contain
+      """
+      1 scenario (1 passed)
+      1 step (1 passed)
+      """ 
             

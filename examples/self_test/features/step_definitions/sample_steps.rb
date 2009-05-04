@@ -87,3 +87,4 @@ end
 Given /^an scenario outline example that (.*)$/ do |result|
   flunker if result == "fails"
 end
+

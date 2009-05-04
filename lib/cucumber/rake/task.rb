@@ -8,7 +8,7 @@ module Cucumber
     #
     #   Cucumber::Rake::Task.new
     #
-    # This will create a task named 'features' described as 'Run Features with 
+    # This will create a task named 'features' described as 'Run Features with
     # Cucumber'. It will use steps from 'features/**/*.rb' and features in 'features/**/*.feature'.
     #
     # To further configure the task, you can pass a block:
@@ -22,7 +22,7 @@ module Cucumber
     #   Cucumber::Rake::Task.new do |t|
     #     t.rcov = true
     #   end
-    # 
+    #
     # See the attributes for additional configuration possibilities.
     class Task
       LIB    = File.expand_path(File.dirname(__FILE__) + '/../..') # :nodoc:
@@ -31,10 +31,10 @@ module Cucumber
       def self.deprecate_accessor(attribute) # :nodoc:
         attr_reader attribute
         class_eval <<-EOF, __FILE__, __LINE__ + 1
-          def #{attribute}=(value)
-            @#{attribute} = value
-            warn("Cucumber::Rake::Task##{attribute} is deprecated and will be removed in 0.4.0.  Please use profiles for complex settings: http://wiki.github.com/aslakhellesoy/cucumber/using-rake#profiles")
-          end
+        def #{attribute}=(value)
+          @#{attribute} = value
+          warn("Cucumber::Rake::Task##{attribute} is deprecated and will be removed in 0.4.0.  Please use profiles for complex settings: http://wiki.github.com/aslakhellesoy/cucumber/using-rake#profiles")
+        end
         EOF
       end
 
@@ -44,12 +44,12 @@ module Cucumber
       attr_accessor :binary
       # Array of paths to specific step definition files to use
       deprecate_accessor :step_list
-      # File pattern for finding step definitions. Defaults to 
+      # File pattern for finding step definitions. Defaults to
       # 'features/**/*.rb'.
       deprecate_accessor :step_pattern
-      # Array of paths to specific features to run. 
+      # Array of paths to specific features to run.
       deprecate_accessor :feature_list
-      # File pattern for finding features to run. Defaults to 
+      # File pattern for finding features to run. Defaults to
       # 'features/**/*.feature'. Can be overridden by the FEATURE environment variable.
       deprecate_accessor :feature_pattern
       # Extra options to pass to the cucumber binary. Can be overridden by the CUCUMBER_OPTS environment variable.
@@ -105,7 +105,7 @@ module Cucumber
 
         if rcov
           args = (['-I'] + lib_args + ['-S', 'rcov'] + rcov_opts +
-            cucumber_bin + ['--'] + cuc_opts + feature_files(task_args)).flatten
+          cucumber_bin + ['--'] + cuc_opts + feature_files(task_args)).flatten
         else
           args = (['-I'] + lib_args + cucumber_bin + cuc_opts + feature_files(task_args)).flatten
         end
@@ -158,14 +158,14 @@ module Cucumber
       end
 
     end
-    
+
     # Defines a convenience Rake task for running a regression suite.
     #
     # The simplest use of it goes something like:
     #
     #   Cucumber::Rake::RegressionTask.new
     #
-    # This will create a task named 'regression' 
+    # This will create a task named 'regression'
     #
     #   Cucumber::Rake::Task.new do |t|
     #     t.cucumber_opts = "--strict --tags ~@in_progress"
@@ -173,49 +173,49 @@ module Cucumber
     #
     #  Note that this will not work if you want to pass your own --tags option
     #  In this case it is recommended to simply use Cucumber::Rake::Task
-   class RegressionTask < Task
+    class RegressionTask < Task
 
       def initialize(task_name = "regression", desc = "Run a regression suite comprised of all scenarios not marked @in_progress")
         super(task_name, desc)
       end
-      
+
       def arguments_for_ruby_execution(task_args = nil)
-          args = super(task_args)
-          args << "--strict"
-          args << "-t~@in_progress"
-          args
+        args = super(task_args)
+        args << "--strict"
+        args << "-t~@in_progress"
+        args
       end
-      
-  end
-  
-  # Defines a convenience Rake task for running all your currently in progress features.
-  #
-  # The simplest use of it goes something like:
-  #
-  #   Cucumber::Rake::InProgressTask.new
-  #
-  # This will create a task named 'in_progress' 
-  #
-  #   Cucumber::Rake::Task.new do |t|
-  #     t.cucumber_opts = "--must-not-pass --tags @in_progress"
-  #   end
-  #
-  #  Note that this will not work if you want to pass your own --tags option
-  #  In this case it is recommended to simply use Cucumber::Rake::Task
-  class InProgressTask < Task
+
+    end
+
+    # Defines a convenience Rake task for running all your currently in progress features.
+    #
+    # The simplest use of it goes something like:
+    #
+    #   Cucumber::Rake::InProgressTask.new
+    #
+    # This will create a task named 'in_progress'
+    #
+    #   Cucumber::Rake::Task.new do |t|
+    #     t.cucumber_opts = "--must-not-pass --tags @in_progress"
+    #   end
+    #
+    #  Note that this will not work if you want to pass your own --tags option
+    #  In this case it is recommended to simply use Cucumber::Rake::Task
+    class InProgressTask < Task
 
       def initialize(task_name = "in_progress", desc = "Run a suite comprised of all scenarios marked @in_progress and expect none of them to pass yet")
         super(task_name, desc)
       end
-      
+
       def arguments_for_ruby_execution(task_args = nil)
-          args = super(task_args)
-          args << "--must-not-pass"
-          args << "-t@in_progress"
-          args
+        args = super(task_args)
+        args << "--must-not-pass"
+        args << "-t@in_progress"
+        args
       end
-      
+
+    end
+
   end
-  
- end  
 end

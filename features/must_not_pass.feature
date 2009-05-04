@@ -44,9 +44,7 @@ Feature: Cucumber --must_not_pass switch
 
     features/must_not_pass/passing.feature:3:in `Scenario: Passing'
     """     
-  
 
-  
   
   Scenario: should work with a scenario outline 
     When I run cucumber -q features/must_not_pass/outline.feature --must-not-pass --require features

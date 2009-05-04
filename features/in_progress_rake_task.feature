@@ -42,13 +42,13 @@ Feature: In Progress Rake task
         Scenario: passing
           Given passing
       """
-      When I run rake in_progress
-      Then it should fail
-      And the output should contain
-          """
-          1 scenario (1 passed)
-          1 step (1 passed)
-          """
+    When I run rake in_progress
+    Then it should fail
+    And the output should contain
+      """
+      1 scenario (1 passed)
+      1 step (1 passed)
+      """
 
   Scenario: should pass if there are failing or undefined scenarios
     Given a file named "features/failing_in_progress.feature" with:
@@ -63,31 +63,31 @@ Feature: In Progress Rake task
         Scenario: missing
           Given missing
       """
-      When I run rake in_progress
-      Then it should pass
-      And the output should contain
-          """
-          2 scenarios (1 failed, 1 undefined)
-          2 steps (1 failed, 1 undefined)
-          """
+    When I run rake in_progress
+    Then it should pass
+    And the output should contain
+      """
+      2 scenarios (1 failed, 1 undefined)
+      2 steps (1 failed, 1 undefined)
+      """
           
         
-    Scenario: regression suite should not run scenarios unless marked as still in progress
-          Given a file named "features/undefined_regression.feature" with:
-            """
-            Feature: Sample
+  Scenario: regression suite should not run scenarios unless marked as still in progress
+    Given a file named "features/undefined_regression.feature" with:
+      """
+        Feature: Sample
             
-            Scenario: passing
-              Given passing
+          Scenario: passing
+            Given passing
               
-            @in_progress
-            Scenario: failing
-              Given failing
-            """
-            When I run rake in_progress 
-            Then it should pass
-            And the output should contain
-            """
-            1 scenario (1 failed)
-            1 step (1 failed)
-            """ 
+          @in_progress
+          Scenario: failing
+            Given failing
+      """
+    When I run rake in_progress 
+    Then it should pass
+    And the output should contain
+      """
+      1 scenario (1 failed)
+      1 step (1 failed)
+      """ 
