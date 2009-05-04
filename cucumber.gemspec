@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-
+      
 Gem::Specification.new do |s|
   s.name = %q{cucumber}
   s.version = "0.3.1.1"
