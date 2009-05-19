@@ -56,7 +56,7 @@ module Cucumber
           Parser::FeatureParser.stub!(:new).and_return(mock("feature parser", :parse_file => @empty_feature))
           
           @cli.execute!(Object.new.extend(StepMother))
-        
+
           @out.string.should include('example.feature')
         end
       
