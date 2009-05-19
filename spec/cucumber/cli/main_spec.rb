@@ -45,7 +45,7 @@ module Cucumber
           @cli.stub!(:require)
         
           @cli.execute!(Object.new.extend(StepMother))
-        
+
           @out.string.should include('example.rb')
         end
       
@@ -80,7 +80,7 @@ module Cucumber
         
           @cli.execute!(@step_mother)
         end
-     
+      
         it "does not use Spec Differ::Default when diff is disabled" do
           @configuration.should_receive(:diff_enabled?).and_return(false)
         
@@ -92,7 +92,7 @@ module Cucumber
       end
 
       describe "--format with class" do
-    
+     
         describe "in module" do
 
           it "should resolve each module until it gets Formatter class" do
@@ -109,8 +109,8 @@ module Cucumber
             cli.execute!(Object.new.extend(StepMother))
           end
 
-        end
-      end              
+        end            
+      end
     end
   end
 end

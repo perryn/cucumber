@@ -33,7 +33,7 @@ module Cucumber
 
         require_files
         enable_diffing
-     
+      
         features = load_plain_text_features
 
         visitor = configuration.build_formatter_broadcaster(step_mother)
@@ -75,7 +75,7 @@ module Cucumber
       end
 
       private
-
+    
       def require_files
         verbose_log("Ruby files required:")
         configuration.files_to_require.each do |lib|
@@ -105,7 +105,7 @@ module Cucumber
           ::Spec::Expectations.differ = ::Spec::Expectations::Differs::Default.new(options)
         end
       end
-   
+    
     end
   end
 end

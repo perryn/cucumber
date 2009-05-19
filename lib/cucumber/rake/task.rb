@@ -22,7 +22,7 @@ module Cucumber
     #   Cucumber::Rake::Task.new do |t|
     #     t.rcov = true
     #   end
-    #
+    # 
     # See the attributes for additional configuration possibilities.
     class Task
       LIB    = File.expand_path(File.dirname(__FILE__) + '/../..') # :nodoc:
@@ -35,7 +35,7 @@ module Cucumber
             @#{attribute} = value
             warn("Cucumber::Rake::Task##{attribute} is deprecated and will be removed in 0.4.0.  Please use profiles for complex settings: http://wiki.github.com/aslakhellesoy/cucumber/using-rake#profiles")
           end
-          EOF
+        EOF
       end
 
       # Directories to add to the Ruby $LOAD_PATH

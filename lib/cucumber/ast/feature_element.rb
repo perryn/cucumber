@@ -32,7 +32,7 @@ module Cucumber
 
     def matches_scenario_names?(scenario_name_regexps)
       scenario_name_regexps.detect{|name| name =~ @name}
-    end
+    end 
 
     def backtrace_line(name = "", line = @line)
       full_name = "#{@keyword} #{@name}"
