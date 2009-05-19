@@ -40,7 +40,7 @@ module Cucumber
         step_mother.visitor = visitor # Needed to support World#announce
         visitor.visit_features(features)
 
-        if configuration.must_not_pass?
+        if configuration.work_in_progress?
           failure = step_mother.scenarios(:passed).any?
         else
           failure = step_mother.steps(:failed).any? ||

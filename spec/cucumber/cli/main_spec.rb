@@ -14,11 +14,11 @@ module Cucumber
         Kernel.stub!(:exit).and_return(nil)
       end
 
-      describe "must not pass mode" do
+      describe "work in progress mode" do
         before(:each) do
           @configuration = mock('Configuration', :null_object => true)
           Configuration.should_receive(:new).and_return(@configuration)
-          @configuration.should_receive(:must_not_pass?).and_return(true)
+          @configuration.should_receive(:work_in_progress?).and_return(true)
 
           @step_mother = mock('StepMother', :null_object => true)
 

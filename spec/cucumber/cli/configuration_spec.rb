@@ -213,22 +213,22 @@ END_OF_MESSAGE
       config.parse!(['--no-color'])
     end
     
-    it "should accept --must-not-pass option" do
+    it "should accept --work-in-progress option" do
       config = Configuration.new
-      config.parse!(%w{--must-not-pass})
-      config.must_not_pass?.should be_true
+      config.parse!(%w{--work-in-progress})
+      config.work_in_progress?.should be_true
     end
     
-    it "should default --must-not-pass to off" do
+    it "should default --work-in-progress to off" do
       config = Configuration.new
       config.parse!(%w{})
-      config.must_not_pass?.should be_false
+      config.work_in_progress?.should be_false
     end
     
-    it "should provide a helpful error message when using incompatible --strict and --must-not-pass" do
-      expected_error_message = /You can't use both --strict and --must-not-pass/
+    it "should provide a helpful error message when using incompatible --strict and --work-in-progress" do
+      expected_error_message = /You can't use both --strict and --work-in-progress/
       config = Configuration.new(StringIO.new, error = StringIO.new)
-      config.parse!(%w{--strict --must-not-pass})
+      config.parse!(%w{--strict --work-in-progress})
       error.string.should match(expected_error_message)
     end
     

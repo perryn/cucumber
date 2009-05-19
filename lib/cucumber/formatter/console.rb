@@ -86,11 +86,11 @@ module Cucumber
         @io.flush
       end
 
-      def print_must_not_pass_report(options)
-        return unless options[:must_not_pass]
+      def print_wip_report(options)
+        return unless options[:work_in_progress]
         passed = step_mother.scenarios(:passed)
         if passed.any?
-          @io.puts "\nSome scenarios passed, but the --must-not-pass switch was used"
+          @io.puts "\nSome scenarios passed, but the --work-in-progress switch was used"
           print_elements(passed, :passed, "scenarios")
         end     
       end
