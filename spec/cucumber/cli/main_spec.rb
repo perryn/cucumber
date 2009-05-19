@@ -45,7 +45,7 @@ module Cucumber
           @cli.stub!(:require)
         
           @cli.execute!(Object.new.extend(StepMother))
-
+        
           @out.string.should include('example.rb')
         end
       
@@ -93,7 +93,7 @@ module Cucumber
 
       describe "--format with class" do
      
-        describe "in module" do
+       describe "in module" do
 
           it "should resolve each module until it gets Formatter class" do
             cli = Main.new(%w{--format ZooModule::MonkeyFormatterClass}, nil)
