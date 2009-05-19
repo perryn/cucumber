@@ -30,7 +30,7 @@ module Cucumber
           cells.create_step_invocations!(scenario_outline)
         end
       end
-
+      
       def example_rows
         cells_rows[1..-1]
       end
@@ -40,7 +40,7 @@ module Cucumber
           @scenario_outline = scenario_outline
           @step_invocations = scenario_outline.step_invocations(self)
         end
-
+        
         def skip_invoke!
           @step_invocations.each do |step_invocation|
             step_invocation.skip_invoke!

@@ -26,14 +26,14 @@ module Cucumber
         @out_stream   = out_stream == STDOUT ? Formatter::ColorIO.new : out_stream
         @error_stream = error_stream
       end
-
+      
       def execute!(step_mother)
         configuration.load_language
         step_mother.options = configuration.options
 
         require_files
         enable_diffing
-
+     
         features = load_plain_text_features
 
         visitor = configuration.build_formatter_broadcaster(step_mother)
@@ -43,7 +43,7 @@ module Cucumber
         if configuration.work_in_progress?
           failure = step_mother.scenarios(:passed).any?
         else
-          failure = step_mother.steps(:failed).any? ||
+          failure = step_mother.steps(:failed).any? || 
           (configuration.strict? && step_mother.steps(:undefined).any?)
         end
 
@@ -68,7 +68,7 @@ module Cucumber
 
       def configuration
         return @configuration if @configuration
-
+      
         @configuration = Configuration.new(@out_stream, @error_stream)
         @configuration.parse!(@args)
         @configuration
@@ -105,7 +105,7 @@ module Cucumber
           ::Spec::Expectations.differ = ::Spec::Expectations::Differs::Default.new(options)
         end
       end
-
+   
     end
   end
 end

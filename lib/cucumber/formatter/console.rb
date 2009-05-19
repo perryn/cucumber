@@ -81,7 +81,6 @@ module Cucumber
         text += snippets.join("\n\n")
 
         @io.puts format_string(text, :undefined)
-        
         @io.puts
         @io.flush
       end

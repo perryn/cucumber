@@ -48,7 +48,7 @@ module Cucumber
 
       def visit_comment_line(comment_line)
         unless comment_line.blank?
-          @io.puts(comment_line.indent(@indent))
+          @io.puts(comment_line.indent(@indent)) 
           @io.flush
         end
       end
@@ -56,7 +56,7 @@ module Cucumber
       def visit_tags(tags)
         tags.accept(self)
         if @indent == 1
-          @io.puts
+          @io.puts 
           @io.flush
         end
       end
@@ -155,7 +155,7 @@ module Cucumber
         super
         @io.puts
         if table_row.exception && !@exceptions.index(table_row.exception)
-          print_exception(table_row.exception, :failed, @indent)
+          print_exception(table_row.exception, :failed, @indent) 
         end
       end
 
